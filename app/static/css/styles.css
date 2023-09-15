@@ -1,0 +1,58 @@
+/* styles.css */
+body,
+html {
+  height: 100%;
+}
+
+.container-fluid {
+  max-width: 80px;
+  /* Adjust the max-width value as desired */
+}
+
+.form-group label {
+  font-size: 20px;
+}
+
+.form-control {
+  font-size: 18px;
+  padding: 10px;
+}
+
+.btn {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  max-width: 200px;
+  height: auto;
+}
+
+.body {
+  background-image: url('static/who.png');
+  background-size: cover;
+}
+
+.upload {
+  input {
+    display: none;
+  }
+
+  label {
+    height: 1000px;
+    width: 1000px;
+    border-radius: 5px;
+    border: 5px dashed #999;
+  }
+
+  label:hover {
+    color: #de0611;
+    border: 1px dashed #de06
+  }
+}
