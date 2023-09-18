@@ -1,12 +1,87 @@
-/* styles.css */
-body,
-html {
-  height: 100%;
+
+@font-face {
+  font-family: Croissant;
+  src: url(../fonts/CroissantOne-Regular.ttf);
 }
 
-.container-fluid {
-  max-width: 80px;
-  /* Adjust the max-width value as desired */
+html {
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+h2{
+  margin: 0;
+}
+
+p{
+  font-size: 18px;
+  margin: 0px 0px 10px 15px;
+}
+
+.music-details-dashboard{
+  box-shadow: #0000002e 1px 5px 15px 10px;
+  transition: 0.3s;
+  border-radius: 30px;
+  display: inline-block;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 40px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.music-details-dashboard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+@keyframes rotate {
+  0% {
+      transform: rotate(0deg); /* Start with no rotation */
+  }
+  100% {
+      transform: rotate(360deg); /* Rotate a full circle (360 degrees) */
+  }
+}
+
+
+.player-img{
+  animation: rotate 5s linear infinite; /* Rotate over 5 seconds infinitely */
+  height: 300px;
+  width: 300px;
+  border-radius: 100%;
+}
+
+.player-img:hover{
+  animation-play-state: paused;
+}
+
+.base-just-align{
+  display: flex;
+  padding: 0px 0px 0px 3px;
+  font-style: italic;
+  font-family: serif;
+  font-weight: 100;
+}
+
+.upload-profile{
+  padding: 20px 0px 0px 0px;
+}
+
+.music-player-dashboard{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin: 20px 0px 0px 0px;
+}
+
+.upload-btn{
+  margin: 0px 20px 0px 20px;
 }
 
 .form-group label {
@@ -32,11 +107,6 @@ html {
 .logo-container img {
   max-width: 200px;
   height: auto;
-}
-
-.body {
-  background-image: url('static/who.png');
-  background-size: cover;
 }
 
 .upload {

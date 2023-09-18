@@ -9,14 +9,14 @@
 {% endif %}
 {% endwith %}
 
-<!-- Rest of the code -->
+<!-- Rest of the code test -->
 
 <head>
     <title>Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- this line links the custom CSS file -->
+    <link rel="stylesheet" href="../static/css/styles.css"> <!-- this line links the custom CSS file -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,31 +24,38 @@
 
 <body>
 
-    <div class="container d-flex align-items-center justify-content-center vh-100">
-        <div class="row justify-content-center">
-            <div class="col-sm-500">
-                <h2>Dashboard</h2>
-                <p><b>Name: </b> {{ songs.songname }} <b>Artist: </b> {{ songs.artist }}</p>
-                <p><b>Genre: </b> {{ songs.genre }} <b>Album: </b> {{ songs.album }}</p>
-                <div>
-                    <audio controls>
-                        <source src="{{ url_for('static', filename='songs/' + songs.songname + '.mp3') }}"
-                            type="audio/mp3">
-                    </audio>
-                </div>
 
-
-
-                <div class="row justify-content-center">
-                    <div class="col-sm-500">
-                        <a href="/upload" class="btn btn-dark">Upload</a>
-                        <a href="/profile" class="btn btn-primary">Profile</a>
-                    </div>
-                </div>
-                </form>
-            </div>
+    <!-- <div class="nav-top" id="nav-top-id">
+        <a href="/dashboard" class="nav-active">Dashboard</a>
+        <a href="/upload" class="nav-inactive">Upload</a>
+        <a href="/profile"class="nav-inactive">Profile</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </div> -->
+    
+    <div class="music-details-dashboard">
+        <div class="">
+        <img class="player-img" src="..//static/assets/player_bg2.jpg">
+        <p>Name     <span class="base-just-align">•   {{ songs.songname }}  </span></p>
+        <p>Artist   <span class="base-just-align">•   {{ songs.artist }}    </span></p>
+        <p>Genre    <span class="base-just-align">•   {{ songs.genre }}     </span></p>
+        <p>Album    <span class="base-just-align">•  {{ songs.album }}      </span></p>
+        
+        <div class="music-player-dashboard">
+            <audio controls>
+                <source src="{{ url_for('static', filename='songs/' + songs.songname + '.mp3') }}"
+                    type="audio/mp3">
+            </audio>
         </div>
+        </div>
+    </div>
 
+    <div class="">
+        <div class="upload-profile">
+            <a href="/upload" class="upload-btn">Upload</a>
+            <a href="/profile" class="profile-btn">Profile</a>
+        </div>
     </div>
 
 </body>
