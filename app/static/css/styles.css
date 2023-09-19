@@ -4,6 +4,25 @@
   src: url(../fonts/CroissantOne-Regular.ttf);
 }
 
+@font-face {
+  font-family: Monoton;
+  src: url(../fonts/Monoton-Regular.ttf);
+}
+
+.index-title{
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.groovy-title{
+  /* font-weight: 700; */
+  font-family: Monoton;
+  justify-self: center;
+}
+
 html {
   margin: 0;
   height: 100%;
@@ -27,9 +46,10 @@ body {
 }
 
 h2{
-  margin: 10px 5px 5px 30px;
-  font-family: Croissant;
-  font-weight: 600;
+  margin: 20px 5px 5px 30px;
+  font-family: Monoton;
+  font-size: 40px;
+  font-weight: 100;
   letter-spacing: 0.5px;
   padding: 6px;
   display: flex;
@@ -109,29 +129,52 @@ p{
 .upload, .profile{
   height: 40px;
   width: 40px;
-  margin: -85px 20px 0px 0px;
+  margin: -95px 20px 0px 0px;
 }
 
 .profile{
-  height: 35px;
-  width: 35px;
-  margin: -84px 60px 0px 0px;
+  height: 34px;
+  width: 34px;
+  margin: -96px 60px 0px 0px;
 }
 
 
 .form-group label {
-  font-size: 20px;
+  font-size: 18px;
+  font-family: sans-serif;
+  /* font-weight: 500; */
+  letter-spacing: 0.5px;
+}
+
+.form-names{
+  font-weight: 600px;
 }
 
 .form-control {
   font-size: 18px;
+  margin: 0;
   padding: 10px;
 }
 
 .btn {
   font-size: 18px;
-  padding: 10px 20px;
+  padding: 10px 55px;
+  color: white;
+  background-color: gray;
 }
+
+.btn-extra {
+  font-size: 18px;
+  padding: 10px 54px;
+  color: white;
+  background-color: teal;
+}
+
+.btn:hover{
+  color: white;
+  background-color: black;
+}
+
 
 .logo-container {
   display: flex;
@@ -196,15 +239,15 @@ p{
   }
   
   h2 {
-    font-size: 25px;
-    margin: 25px 5px 5px 20px;
+    font-size: 24px;
+    margin: 16px 10px 5px 20px;
   }
 
   .upload, .profile{
-    margin: -70px 10px 0px 0px;
+    margin: -80px 10px 0px 0px;
   }
   
   .profile{
-    margin: -70px 25px 0px 0px;
+    margin: -80px 25px 0px 0px;
   }
 }
