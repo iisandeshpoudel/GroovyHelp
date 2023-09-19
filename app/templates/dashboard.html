@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="../script.js"></script> -->
 </head>
 
 <body>
@@ -34,6 +35,9 @@
         </a>
     </div> -->
     
+    <h2>Dashboard</h2>
+
+
     <div class="music-details-dashboard">
         <div class="">
         <img class="player-img" src="..//static/assets/player_bg2.jpg">
@@ -43,7 +47,7 @@
         <p>Album    <span class="base-just-align">•  {{ songs.album }}      </span></p>
         
         <div class="music-player-dashboard">
-            <audio controls>
+            <audio id="audio" controls>
                 <source src="{{ url_for('static', filename='songs/' + songs.songname + '.mp3') }}"
                     type="audio/mp3">
             </audio>
@@ -53,8 +57,12 @@
 
     <div class="">
         <div class="upload-profile">
-            <a href="/upload" class="upload-btn">Upload</a>
-            <a href="/profile" class="profile-btn">Profile</a>
+            <a href="/upload">
+                <img src="../static/assets/upload.png" class="upload" title="Upload Music">
+            </a>
+            <a href="/profile">
+                <img src="..//static/assets/profile.png" class="profile" title="View Profile">
+            </a>
         </div>
     </div>
 

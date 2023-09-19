@@ -11,7 +11,13 @@ html {
 }
 
 h2{
-  margin: 0;
+  margin: 10px 5px 5px 30px;
+  font-family: Croissant;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 p{
@@ -21,7 +27,7 @@ p{
 
 .music-details-dashboard{
   box-shadow: #0000002e 1px 5px 15px 10px;
-  transition: 0.3s;
+  transition: 0.16s;
   border-radius: 30px;
   display: inline-block;
   margin: 0 auto;
@@ -51,6 +57,7 @@ p{
 
 .player-img{
   animation: rotate 5s linear infinite; /* Rotate over 5 seconds infinitely */
+  /* animation: none; */
   height: 300px;
   width: 300px;
   border-radius: 100%;
@@ -68,10 +75,6 @@ p{
   font-weight: 100;
 }
 
-.upload-profile{
-  padding: 20px 0px 0px 0px;
-}
-
 .music-player-dashboard{
   display: flex;
   flex-direction: row;
@@ -80,9 +83,24 @@ p{
   margin: 20px 0px 0px 0px;
 }
 
-.upload-btn{
-  margin: 0px 20px 0px 20px;
+.upload-profile{
+  display: flex;
+  justify-content: flex-end;
 }
+
+
+.upload, .profile{
+  height: 40px;
+  width: 40px;
+  margin: -85px 20px 0px 0px;
+}
+
+.profile{
+  height: 35px;
+  width: 35px;
+  margin: -84px 60px 0px 0px;
+}
+
 
 .form-group label {
   font-size: 20px;
@@ -109,7 +127,7 @@ p{
   height: auto;
 }
 
-.upload {
+/* .upload {
   input {
     display: none;
   }
@@ -124,5 +142,52 @@ p{
   label:hover {
     color: #de0611;
     border: 1px dashed #de06
+  }
+} */
+
+
+@media screen and (max-width: 500px) {
+  p {
+    font-size: 15px;
+  }
+
+  .music-details-dashboard {
+    padding: 20px 20px;
+  }
+  
+  h2 {
+    font-size: 30px;
+    margin: 10px 5px 5px 20px;
+  }
+
+  .upload, .profile{
+    margin: -85px 20px 0px 0px;
+  }
+  
+  .profile{
+    margin: -84px 30px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  p {
+    font-size: 15px;
+  }
+
+  .music-details-dashboard {
+    padding: 20px 20px;
+  }
+  
+  h2 {
+    font-size: 25px;
+    margin: 25px 5px 5px 20px;
+  }
+
+  .upload, .profile{
+    margin: -70px 10px 0px 0px;
+  }
+  
+  .profile{
+    margin: -70px 25px 0px 0px;
   }
 }
