@@ -61,6 +61,12 @@ p{
   margin: 0px 0px 10px 15px;
 }
 
+.profile-info{
+  font-size: 18px;
+  margin: 150px 0px;
+}
+
+
 .music-details-dashboard{
   background-color: #f1f3f4;
   box-shadow: #0000002e 1px 5px 15px 10px;
@@ -69,7 +75,7 @@ p{
   display: inline-block;
   margin: 0 auto;
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 40px 40px;
@@ -175,6 +181,28 @@ p{
   background-color: black;
 }
 
+.prev-next-btn{
+  display: inline-flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.no-style-btn{
+  background-color: transparent;
+  color: transparent;
+  border: none;
+
+}
+.no-style-btn:hover{
+  background-color: transparent;
+  color: teal;
+  border: none;
+
+}
+
 
 .logo-container {
   display: flex;
@@ -204,6 +232,7 @@ p{
     border: 1px dashed #de06
   }
 } */
+
 
 
 @media screen and (max-width: 500px) {

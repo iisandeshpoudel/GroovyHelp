@@ -37,7 +37,7 @@
         <p>Name     <span class="base-just-align">•   {{ songs.songname }}  </span></p>
         <p>Artist   <span class="base-just-align">•   {{ songs.artist }}    </span></p>
         <p>Genre    <span class="base-just-align">•   {{ songs.genre }}     </span></p>
-        <p>Album    <span class="base-just-align">•  {{ songs.album }}      </span></p>
+        <p>Album    <span class="base-just-align">•   {{ songs.album }}      </span></p>
         
         <div class="music-player-dashboard">
             <audio id="audio" controls>
@@ -56,6 +56,22 @@
             <a href="/profile">
                 <img src="..//static/assets/profile.png" class="profile" title="View Profile">
             </a>
+        </div>
+    </div>
+    <div class="prev-next-btn">
+        <div class="next-song">
+            <form action="/next-song" method="POST">
+                <button type="submit" class="no-style-btn">
+                    <img src="..//static/assets/right-arrow.png" width="60px" height="60px">
+                </button>
+            </form>
+        </div>
+        <div class="previous-song">
+            <form action="/previous-song" method="POST">
+                <button type="submit" class="no-style-btn">
+                    <img src="..//static/assets/left-arrow.png" width="60px" height="60px">
+                </button>
+            </form>
         </div>
     </div>
 
