@@ -21,6 +21,7 @@
   /* font-weight: 700; */
   font-family: Monoton;
   justify-self: center;
+  margin: 10px 0px;
 }
 
 html {
@@ -63,7 +64,7 @@ p{
 
 .profile-info{
   font-size: 18px;
-  margin: 150px 0px;
+  /* margin: 150px 0px; */
 }
 
 
@@ -142,6 +143,23 @@ p{
   height: 34px;
   width: 34px;
   margin: -96px 60px 0px 0px;
+}
+
+table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 10px 0px ;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #f2f2f2;
 }
 
 

@@ -17,17 +17,33 @@
         <source src="../static/videos/vector.mp4" type="video/mp4">
     </video>
 
-    <div class="container d-flex align-items-center justify-content-center vh-100">
-        <div class="row justify-content-center">
+    <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="justify-content-center">
             <div class="">
-                <h1 class="groovy-title">Profile</h1>
+                <h1 class="groovy-title">PROFILE</h1>
                 <span class="profile-info">Name:  {{user.name}}</span><br>
                 <span class="profile-info">Email:  {{user.email}}</span><br>
 
+                <h1 class="groovy-title">SONGS</h1>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Genre</th>
+                        <th>Album</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
                 <a href="/logout" class="btn">Logout</a>
-                <a href="/dashboard" class="btn btn-extra">Go Back to Dashboard</a>
-
-                </form>
+                <a href="/dashboard" class="btn btn-extra">← Dashboard</a>
             </div>
         </div>
 
