@@ -54,6 +54,7 @@ class Song(db.Model):
         self.genre = genre
         self.album = album
 
+
  # creating table with the help of models
 with app.app_context():
     db.create_all()
@@ -155,23 +156,22 @@ def profile():
     return redirect('/login')
 
 
-# Need to debug this
-# ChatGPT gave this code to use for getting db values for table
-@app.route('/')
-def display_data():
-    # Connect to the SQLite database
-    conn = sqlite3.connect('mydatabase.db')
-    cursor = conn.cursor()
+# #Need to debug this
+# # ChatGPT gave this code to use for getting db values for table
+# @app.route('/')
+# def display_data():
+#     # Connect to the SQLite database
+#     conn = sqlite3.connect('mydatabase.db')
+#     cursor = conn.cursor()
 
-    # Execute an SQL query to retrieve all rows
-    cursor.execute("SELECT artist, genre, songname, album  FROM users")
-    data = cursor.fetchall()
+#     # Execute an SQL query to retrieve all rows
+#     cursor.execute("SELECT artist, genre, songname, album  FROM users")
+#     data = cursor.fetchall()
 
-    # Close the database connection
-    conn.close()
+#     # Close the database connection
+#     conn.close()
 
-    return render_template('profile.html', data=data)
-
+#     return render_template('profile.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
