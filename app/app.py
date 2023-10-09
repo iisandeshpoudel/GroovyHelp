@@ -12,6 +12,7 @@ with open('config.json', 'r') as c:
 
 # creating flask instance with database instance
 app = Flask(__name__)
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/groovydb'
 app.config['SQLALCHEMY_DATABASE_URI'] = param['local_uri']
 db = SQLAlchemy(app)
@@ -21,7 +22,7 @@ app.secret_key = 'secret_key'
 app.config['UPLOAD_FOLDER'] = param['upload_location']
 
 
-# Modeling the table
+####### Modeling the table
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True,
@@ -29,6 +30,9 @@ class User(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
+
+    # Define a one-to-many relationship with songs
+    songs = db.relationship('Song', backref='user', lazy=True)
 
     def __init__(self, name, email, password):
         self.name = name
@@ -48,19 +52,22 @@ class Song(db.Model):
     genre = db.Column(db.String(45), nullable=False)
     album = db.Column(db.String(45), nullable=False)
 
-    def __init__(self, songname, artist, genre, album):
+    # Add a foreign key to link songs to users
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, songname, artist, genre, album, user_id):
         self.songname = songname
         self.artist = artist
         self.genre = genre
         self.album = album
+        self.user_id = user_id
 
-
- # creating table with the help of models
+# creating table with the help of models
 with app.app_context():
     db.create_all()
 
 
-# creating decorates
+##### creating decorates
 
 @app.route('/')
 def index():
@@ -78,6 +85,7 @@ def register():
         new_user = User(name=name, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
+        flash('Successfly Resgistered')
         return redirect('/login')
 
     return render_template('register.html')
@@ -123,8 +131,12 @@ def upload():
             genre = request.form['genre']
             album = request.form['album']
 
+            # Get the currently logged-in user and their user_id
+            user = User.query.filter_by(email=session['email']).first()
+            user_id = user.id
+
             new_song = Song(songname=songname, artist=artist,
-                            genre=genre, album=album)
+                            genre=genre, album=album, user_id=user_id)
             db.session.add(new_song)
             db.session.commit()
 
@@ -132,6 +144,10 @@ def upload():
             f = request.files['file']
             f.save(os.path.join(
                 app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+
+            # file_path = os.path.join(app.root_path, 'static', 'songs', secure_filename(f.filename))
+            # f.save(file_path)
+
             flash('Successfly Uploaded')
             return redirect('/dashboard')
 
@@ -150,28 +166,61 @@ def logout():
 def profile():
     if 'email' in session:
         user = User.query.filter_by(email=session['email']).first()
-        return render_template('profile.html', user=user)
+        songs = user.songs  # Get the songs uploaded by the user
+        return render_template('profile.html', user=user, songs=songs)
 
     flash('Please log in first', 'error')
     return redirect('/login')
 
+##### For editing and deleting songs ##############
+@app.route('/edit_song/<int:song_id>', methods=['GET', 'POST'])
+def edit_song(song_id):
+    song = Song.query.get(song_id)
+    if request.method == 'POST':
+        song.songname = request.form['songname']
+        song.artist = request.form['artist']
+        song.genre = request.form['genre']
+        song.album = request.form['album']
+        db.session.commit()
+        flash('Song updated successfully')
+        return redirect('/profile')
+    return render_template('edit_song.html', song=song)
 
+@app.route('/delete_song/<int:song_id>')
+def delete_song(song_id):
+    song = Song.query.get(song_id)
+    db.session.delete(song)
+    db.session.commit()
+    flash('Song deleted successfully')
+    return redirect('/profile')
 
-# ChatGPT gave this code to use for getting db values for table
-@app.route('/')
-def display_data():
-    # Connect to the SQLite database
-    conn = sqlite3.connect('mydatabase.db')
-    cursor = conn.cursor()
+##### For admin page ##############
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if 'email' in session and session['email'] == 'admin@admin.com':
+        users = User.query.all()  # Get all users
+        return render_template('admin.html', users=users)
+    else:
+        flash('Please log in as admin first')
+        return redirect('/admin_login')
 
-    # Execute an SQL query to retrieve all rows
-    cursor.execute("SELECT artist, genre, songname, album  FROM users")
-    data = cursor.fetchall()
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        if email == 'admin@admin.com' and password == 'admin':
+            session['email'] = email
+            return redirect('/admin')
+        else:
+            flash('Invalid admin credentials', 'error')
+    return render_template('admin_login.html')
 
-    # Close the database connection
-    conn.close()
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('email', None)
+    return redirect('/admin_login')
 
-    return render_template('profile.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

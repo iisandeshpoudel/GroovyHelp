@@ -33,12 +33,16 @@
                         <th>Album</th>
                         <th>Action</th>
                     </tr>
-                    {% for row in data %}
+                    {% for song in songs %}
                     <tr>
-                        <td>{{ row[0] }}</td>
-                        <td>{{ row[1] }}</td>
-                        <td>{{ row[2] }}</td>
-                        <td>{{ row[3] }}</td>
+                        <td>{{ song.songname }}</td>
+                        <td>{{ song.artist }}</td>
+                        <td>{{ song.genre }}</td>
+                        <td>{{ song.album }}</td>
+                        <td>
+                            <a href="/edit_song/{{ song.songid }}" class="btn btn-warning">Edit</a>
+                            <a href="/delete_song/{{ song.songid }}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>
