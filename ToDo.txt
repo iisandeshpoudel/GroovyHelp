@@ -1,0 +1,8 @@
+ToDo list:
+1. Search 
+2. Next and previous btn
+3. Play btn option in profile page (optional)
+
+One bug found:
+when you login to admin panel, and edit song the edit_song.html returns the dashboard.html.... which is working for user account, but not working admin
+need to find a way to return to admin.html when edit_song.html is accessed through admin level

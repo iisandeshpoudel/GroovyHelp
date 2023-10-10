@@ -33,20 +33,19 @@
                         <th>Album</th>
                         <th>Action</th>
                     </tr>
-                    
+                    {% for song in songs %}
                     <tr>
-                        <td> Test Data</td>
-                        <td> Test Data</td>
-                        <td> Test Data</td>
-                        <td> Test Data</td>
-                        <form action="/delete" method="post">
-                            <td><input type="submit" value="Delete" class="btn"></td>
-                        </form>
+                        <td>{{ song.songname }}</td>
+                        <td>{{ song.artist }}</td>
+                        <td>{{ song.genre }}</td>
+                        <td>{{ song.album }}</td>
+                        <td>
+                            <a href="/edit_song/{{ song.songid }}" class="btn btn-warning">Edit</a>
+                            <a href="/delete_song/{{ song.songid }}" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
+                    {% endfor %}
                 </table>
-
-
-                
                 <a href="/logout" class="btn">Logout</a>
                 <a href="/dashboard" class="btn btn-extra">← Dashboard</a>
             </div>

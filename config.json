@@ -4,6 +4,10 @@
         "local_uri": "mysql+pymysql://root:root@localhost:3306/groovydb",
         "prod_uri": "mysql+pymysql://root:root@localhost:3306/groovydb",
         "emoji_image": "emoji.png",
+<<<<<<< HEAD
         "upload_location": "app/static/songs"
+=======
+        "upload_location": "C:\\Users\\iisan\\Desktop\\GroovyHelp\\app\\static\\songs"
+>>>>>>> 54fdf1e95a6a89d9da528efedef3ec70bd77a9be
     }
 }
