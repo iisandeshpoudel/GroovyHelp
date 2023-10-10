@@ -172,6 +172,36 @@ def profile():
     flash('Please log in first', 'error')
     return redirect('/login')
 
+
+@app.route('/next_song/<int:song_id>', methods=['GET', 'POST'])
+def next_song(song_id):
+    total_songs = Song.query.count()  # Get the total number of songs in the database
+    if song_id == total_songs:
+        # If the current song is in the first row, wrap around to the last row
+        song_id = 0
+    else:
+        song_id = song_id  # Increment the song_id to get the previous song
+
+    songs = Song.query.slice(song_id, song_id + 1).first()
+    return render_template('dashboard.html', songs=songs)
+
+
+@app.route('/previous_song/<int:song_id>', methods=['GET', 'POST'])
+def previous_song(song_id):
+    total_songs = Song.query.count()  # Get the total number of songs in the database
+    
+    if song_id == 1:
+        # If the current song is in the first row, wrap around to the last row
+        song_id = total_songs
+    else:
+        song_id -= 1  # Decrement the song_id to get the previous song
+
+    songs = Song.query.slice(song_id - 1, song_id).first()
+    return render_template('dashboard.html', songs=songs)
+
+
+
+
 ##### For editing and deleting songs ##############
 @app.route('/edit_song/<int:song_id>', methods=['GET', 'POST'])
 def edit_song(song_id):
@@ -194,23 +224,6 @@ def delete_song(song_id):
     flash('Song deleted successfully')
     return redirect('/profile')
 
-<<<<<<< HEAD
-# ChatGPT gave this code to use for getting db values for table
-# @app.route('/')
-# def display_data():
-#     # Connect to the SQLite database
-#     conn = sqlite3.connect('mydatabase.db')
-#     cursor = conn.cursor()
-
-#     # Execute an SQL query to retrieve all rows
-#     cursor.execute("SELECT artist, genre, songname, album  FROM users")
-#     data = cursor.fetchall()
-
-#     # Close the database connection
-#     conn.close()
-
-#     return render_template('profile.html', data=data)
-=======
 ##### For admin page ##############
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
@@ -238,7 +251,6 @@ def admin_logout():
     session.pop('email', None)
     return redirect('/admin_login')
 
->>>>>>> 54fdf1e95a6a89d9da528efedef3ec70bd77a9be
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -60,14 +60,14 @@
     </div>
     <div class="prev-next-btn">
         <div class="next-song">
-            <form action="/next-song" method="POST">
+            <form action="/next_song/{{ songs.songid }}" method="POST">
                 <button type="submit" class="no-style-btn">
                     <img src="..//static/assets/right-arrow.png" width="60px" height="60px" title="Next Song">
                 </button>
             </form>
         </div>
-        <div class="previous-song">
-            <form action="/previous-song" method="POST">
+        <div class="previous_song">
+            <form action="/previous_song/{{ songs.songid }}" method="POST">
                 <button type="submit" class="no-style-btn">
                     <img src="..//static/assets/left-arrow.png" width="60px" height="60px" title="Previous Song">
                 </button>
