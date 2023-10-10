@@ -158,20 +158,20 @@ def profile():
 
 
 # ChatGPT gave this code to use for getting db values for table
-@app.route('/')
-def display_data():
-    # Connect to the SQLite database
-    conn = sqlite3.connect('mydatabase.db')
-    cursor = conn.cursor()
+# @app.route('/')
+# def display_data():
+#     # Connect to the SQLite database
+#     conn = sqlite3.connect('mydatabase.db')
+#     cursor = conn.cursor()
 
-    # Execute an SQL query to retrieve all rows
-    cursor.execute("SELECT artist, genre, songname, album  FROM users")
-    data = cursor.fetchall()
+#     # Execute an SQL query to retrieve all rows
+#     cursor.execute("SELECT artist, genre, songname, album  FROM users")
+#     data = cursor.fetchall()
 
-    # Close the database connection
-    conn.close()
+#     # Close the database connection
+#     conn.close()
 
-    return render_template('profile.html', data=data)
+#     return render_template('profile.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
